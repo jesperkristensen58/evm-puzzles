@@ -8,7 +8,8 @@
 
 - [x] Puzzle 3: In this case, we are sending in CALLDATA. The first opcode computes its length (in bytes). So if we send in "0xff" that is 1 byte and CALLDATASIZE is 1. The jump instruction (second opcode) needs to jump to the JMPDEST (at location 4 in memory). So we need to pass in CALLDATA that has size 4 bytes, e.g.: 0xffffffff.
 
-- [ ] Puzzle 4:
+- [x] Puzzle 4: We are taking CODESIZE xor CALLVALUE. The codesize is fixed at 0xc. So we need a number where 0xc ^ (number) = 0xa, because 0xa is the JMPDEST. We can convert 0xc to binary in python with: bin(int("0xc", 16)) giving us: 0b1100. So "1100". We need 0xa=1010. So 1100^(something) = 1010. The xor is exclusive or, so only if it's a strict or condition does it give 1. Thus, going bit by bit we see that we need a pattern: (1100) ^ (0110) = (1010), so 0110=hex(0b0110)=0x6. So the value is 6.
+
 - [ ] Puzzle 5:
 - [ ] Puzzle 6:
 - [ ] Puzzle 7:
