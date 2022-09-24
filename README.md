@@ -6,7 +6,8 @@
 
 - [x] Puzzle 2: Now, the callvalue is added to the stack first, then on top comes the CODESIZE. We see from the program given that the codesize is 10 (from 0 through slot/location 9). Then, a subtraction happens via SUB. Sub subtracts the top and top-1 elements like this: (top) - (top-1), so we get: CODESIZE-CALLVALUE (codesize is at the top since it was pushed second). So 10 - x needs to be fed into the following JUMP command so that we end up at the JUMPDEST at location 6. In other words, 10-x=6, or x=4. So if we send in a callvalue of 4 the JUMP will read 6 off the top of the stack and thus jump to 6 which is JUMPDEST and thus valid and after that, the program continues to a "STOP" command which halts execution and thus we don't hit the following REVERTS either.
 
-- [ ] Puzzle 3:
+- [x] Puzzle 3: In this case, we are sending in CALLDATA. The first opcode computes its length (in bytes). So if we send in "0xff" that is 1 byte and CALLDATASIZE is 1. The jump instruction (second opcode) needs to jump to the JMPDEST (at location 4 in memory). So we need to pass in CALLDATA that has size 4 bytes, e.g.: 0xffffffff.
+
 - [ ] Puzzle 4:
 - [ ] Puzzle 5:
 - [ ] Puzzle 6:
