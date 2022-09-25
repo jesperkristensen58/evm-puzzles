@@ -21,7 +21,7 @@ c37f9af88f892824f795eb5d0a412d7731528f8fb188222451fa7a601970f64736f6c63430008070
 
 - [x] Puzzle 9: I need to send in calldata with size > 3. So I just send the smallet size I can which can still be multiplied by the call value to give 8 (you see later on after the initial calldata size check we multiply the calldatasize with the incoming callvalue and compare to 8). So I send in 0x00000001 that is 4 in size which is the smallest number >3 and can be muliplied by an integer to give 8. So the CALLVALUE is this integer, and I see that if I send in 2 I get: 4*2 = 8, that is what I need to complete. So I send as callvalue (first parameter to provide): 2, and I send in the calldata: 0x00000001.
 
-- [ ] Puzzle 10: 
+- [x] Puzzle 10: For this one, I first see that I need calldatasize to equal 0 when mod'ed with 3. So I just pick 3 in size and thus send 0x000001. Next, for the callvalue, this needs to be less than the codesize which is 0x1b=27. Okay, I also need the callvalue + 0xa = 0x19, the JUMPDEST later on. Since 0xa = 10, I need the callvalue to be 0x19-0xa = 15 (or 0xf, but I need to provide the value in decimal, so 15 works). Since 15<27 that's great. That's the answer!
 
 ## Introduction
 
