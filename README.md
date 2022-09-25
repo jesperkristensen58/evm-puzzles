@@ -12,7 +12,8 @@
 
 - [x] Puzzle 5: We see that the callvalue is duplicated and then multiplied. In other words, the code squares the incoming callvalue. Then, it compares it to 0x0100 which is 256. If equal it will push 1 to the stack. Then, the JUMPDEST destination hex is pushed to the stack. Now, the JUMPI is reached. It takes 0x0c as the destination which we confirm is JUMPDEST, so all is good so far. But it only jumps *if* the following stack element is 1. And we want it to perform the jump to not revert. So we need 256 to equal our incoming value squared. In other words, we need to send in 16 (16^2=256). This makes JUMPI look like: `JUMPI 0x0c 1` which will do the jump to 0x0c.
 
-- [ ] Puzzle 6:
+- [x] Puzzle 6: In this case, we use CALLDATALOAD with 0 index. In other words, we are reading the calldata with an offset of 0 (so we read the entire data). We need this command to return 0x000000000000000000000000000000000000000000000000000000000000000A because that will jump to 0x0a where JUMPDEST is. So to return that data value and since we start with an offset of 0 we simply send in this value: 0x000000000000000000000000000000000000000000000000000000000000000A (32 bytes).
+
 - [ ] Puzzle 7:
 - [ ] Puzzle 8:
 - [ ] Puzzle 9:
