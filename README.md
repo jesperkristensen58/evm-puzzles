@@ -19,7 +19,9 @@
 - [x] Puzzle 8: In this puzzle, the CALLDATA is basically a contract that we need to deploy (via CREATE). This contract when called with 0 wei and 0 arguments, need to revert (so that the returned value is 0). The returned value 0 is then compared to 0 and this allows the JUMP to jump to the JUMPDEST (over the reverts) and we can pass the puzzle. The question then is, what CALLDATA creates a contract (when called via CREATE) which simply reverts when no arguments or function selector is specified? This would be a contract with a fallback function. The fallback function just needs to contain a "revert();" statement as its sole content. So I created that contract in Remix and copied its bytecode and passed that in as the CALLDATA. 0x6080604052348015600f57600080fd5b50604b80601d6000396000f3fe6080604052348015600f57600080fd5b50600080fdfea2646970667358221220067
 c37f9af88f892824f795eb5d0a412d7731528f8fb188222451fa7a601970f64736f6c63430008070033 is what I used (that represents a contract with a fallback function that simply reverts).
 
-- [ ] Puzzle 9:
+- [x] Puzzle 9: I need to send in calldata with size > 3. So I just send the smallet size I can which can still be multiplied by the call value to give 8 (you see later on after the initial calldata size check we multiply the calldatasize with the incoming callvalue and compare to 8). So I send in 0x00000001 that is 4 in size which is the smallest number >3 and can be muliplied by an integer to give 8. So the CALLVALUE is this integer, and I see that if I send in 2 I get: 4*2 = 8, that is what I need to complete. So I send as callvalue (first parameter to provide): 2, and I send in the calldata: 0x00000001.
+
+- [ ] Puzzle 10: 
 
 ## Introduction
 
