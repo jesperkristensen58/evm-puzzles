@@ -10,7 +10,8 @@
 
 - [x] Puzzle 4: We are taking CODESIZE xor CALLVALUE. The codesize is fixed at 0xc. So we need a number where 0xc ^ (number) = 0xa, because 0xa is the JMPDEST. We can convert 0xc to binary in python with: bin(int("0xc", 16)) giving us: 0b1100. So "1100". We need 0xa=1010. So 1100^(something) = 1010. The xor is exclusive or, so only if it's a strict or condition does it give 1. Thus, going bit by bit we see that we need a pattern: (1100) ^ (0110) = (1010), so 0110=hex(0b0110)=0x6. So the value is 6.
 
-- [ ] Puzzle 5:
+- [x] Puzzle 5: We see that the callvalue is duplicated and then multiplied. In other words, the code squares the incoming callvalue. Then, it compares it to 0x0100 which is 256. If equal it will push 1 to the stack. Then, the JUMPDEST destination hex is pushed to the stack. Now, the JUMPI is reached. It takes 0x0c as the destination which we confirm is JUMPDEST, so all is good so far. But it only jumps *if* the following stack element is 1. And we want it to perform the jump to not revert. So we need 256 to equal our incoming value squared. In other words, we need to send in 16 (16^2=256). This makes JUMPI look like: `JUMPI 0x0c 1` which will do the jump to 0x0c.
+
 - [ ] Puzzle 6:
 - [ ] Puzzle 7:
 - [ ] Puzzle 8:
